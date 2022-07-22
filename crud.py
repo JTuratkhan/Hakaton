@@ -2,70 +2,70 @@ import json
 
 
 def main():
-    print('1)Объектти жаратуу\n2)Маалыматты кароо\n3)Так маалыматты кароо\n4)Объектти озгортуу\n5)Объектти жок кылуу\n6)Автоунаага лайк басуу\n7)Автоунаага комментарий жазуу\n8)Жумушту бутуруу ')    
+    print('1)Objektti jaratuu\n2)Maalymatty karoo\n3)Tak maalymatty karoo\n4)Objektti ozgortuu\n5)Objektti jok kyluu\n6)Avtounaaga like basuu\n7)Avtounaaga kommentariy jazuu\n8)Jumushtuu buturuu ')    
     try:
-        a=int(input('Тейлоону тандагыла:'))
+        a=int(input('Teiloonu tandagyla'))
         if a == 1:
-            brand=input('Маркасы:')
-            model=input('Модели:')
-            year=int(input('Жылы:'))
-            volume=input('Объёму:')
-            color=input('Ону:')
-            body=int(input('Кузовтун туру:\n1-Седан\n2-Универсал\n3-Купе\n4-Хэтчбек\n5-Минивен\n6-Внедорожник\n7-Пикап\n'))
+            brand=input('Markasy:')
+            model=input('Modeli:')
+            year=int(input('Jyly:'))
+            volume=input('Obyomu:')
+            color=input('Onu:')
+            body=int(input('Kuzovtun turu\n1-Sedan\n2-Universal\n3-Kupe\n4-Hatchback\n5-Minivan\n6-Vnedorojnik\n7-Pickup\n'))
             if body==1:
-                body='Седан'
+                body='Sedan'
             elif body==2:
-                body='Универсал'
+                body='Universal'
             elif body==3:
-                body='Купе'
+                body='Kupe'
             elif body==4:
-                body='Хэтчбек'
+                body='Hatchback'
             elif body==5:
-                body='Минивен'
+                body='Minivan'
             elif body==6:
-                body='Внедорожник'
+                body='Vnedorojnik'
             elif body==7:
-                body='Пикап'
-            mileage=int(input('Пробег:'))
-            price=int(input('Баасы:'))
+                body='Pickup'
+            mileage=int(input('Probeg:'))
+            price=int(input('Baasy:'))
             Cars().create(brand, model, year, volume,color, body, mileage, price)
             main()
         elif a == 2 :
             print(Cars.listing())
             main()
         elif a == 3:
-            object=int(input('Объекттин индексин киргизгиле:'))
+            object=int(input('Objekttin indexin kirgizgile: '))
             print(Cars.retrieve(object))
             main()
         elif a == 4:
-            object=int(input('Объекттин индексин киргизгиле:'))
+            object=int(input('Objekttin indexin kirgizgile: '))
             kwargs={}
-            obj=input('Объекттин индексин киргизгиле:')
-            val=input('Кайсыга алмаштыргыныз келип жатат:')
+            obj=input('Objekttin indexin kirgizgile: ')
+            val=input('Kaisyga almashtyrgynyz kelip jatat: ')
             kwargs[obj]=val
             Cars().update_car(object, **kwargs)
             main()
         elif a == 5 :
-            object=int(input('Объекттин индексин киргизгиле:'))
+            object=int(input('Objekttin indexin kirgizgile: '))
             Cars().delete_car(object)
             main()
 
         elif a == 6:
-            id = int(input('Объекттин индексин киргизгиле:'))
+            id = int(input('Objekttin indexin kirgizgile: '))
             Cars().like_(id)
             main()
         elif a==7:
-            id=int(input('Объекттин индексин киргизгиле:'))
+            id=int(input('Objekttin indexin kirgizgile: '))
             kwargs = {}
-            com = input('Коммент: ')
+            com = input('komment')
             kwargs['coment'] = com
             Cars().coments(id, **kwargs)
             main()
 
         elif a == 8:
-            print('Тейлоо бутту!')
+            print('Teiloo buttu!')
     except:
-        print('Маалымат туура берилген эмес!')
+        print('Maalymat tuura berilgen emes!')
         main()
 
 
@@ -98,7 +98,7 @@ class Cars:
     def get_one_car(auto,id):
         car= list(filter(lambda x : x['id']==id , auto))
         if not car:
-            return('Мындай продукт жок ')
+            return('Myndai produkt jok')
         return car[0]
 
 
@@ -111,14 +111,14 @@ class Cars:
         auto=Cars.listing()
         car={
             'id':Cars.get_id(),
-            'Маркасы':self.brand,
-            'Модели':self.model,
-            'Жылы':self.year,
-            'Объёму':self.volume,
-            'Ону':self.color,
-            'Кузовтун туру':self.body,
-            'Пробег':self.milage,
-            'Баасы':self.price,
+            'Markasy':self.brand,
+            'Modeli':self.model,
+            'Jyly':self.year,
+            'Obyomu':self.volume,
+            'Onu':self.color,
+            'Kuzovtun turu':self.body,
+            'Probeg':self.milage,
+            'Baasy':self.price,
 
         }
         auto.append(car)
